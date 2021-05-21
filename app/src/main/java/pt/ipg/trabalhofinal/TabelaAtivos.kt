@@ -7,7 +7,7 @@ import android.provider.BaseColumns
 
 class TabelaAtivos (db: SQLiteDatabase) : BaseColumns {
     private val db : SQLiteDatabase = db
-    fun cria() = db?.execSQL("CREATE TABLE $NOME_TABELA (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT)")
+    fun cria() = db?.execSQL("CREATE TABLE $NOME_TABELA (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_ID_PESSOAS INTEGER NOT NULL, FOREIGN KEY ($CAMPO_ID_PESSOAS) REFERENCES ${TabelaPessoas.NOME_TABELA})")
 
         fun insert(values: ContentValues): Long {
             return db.insert(NOME_TABELA, null, values)
