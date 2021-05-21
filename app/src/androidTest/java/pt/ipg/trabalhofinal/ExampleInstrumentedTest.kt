@@ -7,18 +7,26 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 import org.junit.Assert.*
+import org.junit.Before
 
-/**
- * Instrumented test, which will execute on an Android device.
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
 @RunWith(AndroidJUnit4::class)
-class ExampleInstrumentedTest {
-    @Test
-    fun useAppContext() {
-        // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("pt.ipg.trabalhofinal", appContext.packageName)
+class TesteBaseDados {
+    private fun getAppContext() = InstrumentationRegistry.getInstrumentation().targetContext
+    private fun getBDCasosOpenHelper() = BDCasosOpenHelper(getAppContext())
+
+
+    @Before
+    fun apagaBD() {
+        getAppContext().deleteDatabase(BDCasosOpenHelper.NOME_BASE_DADOS)
     }
+
+    @Test
+    fun consegueAbrirBD(){
+
+        val db = getBDCasosOpenHelper().readableDatabase
+        assert(db.isOpen)
+
+        db.close()
+    }
+
 }
