@@ -7,7 +7,7 @@ import android.provider.BaseColumns
 
 class TabelaTotais (db: SQLiteDatabase) : BaseColumns {
     private val db : SQLiteDatabase = db
-    fun cria() = db?.execSQL("CREATE TABLE $NOME_TABELA (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT)")
+    fun cria() = db?.execSQL("CREATE TABLE $NOME_TABELA (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_TOTAIS INTEGER NOT NULL, $CAMPO_ATIVOS INTEGER NOT NULL, $CAMPO_RECUPERADOS INTEGER NOT NULL)")
 
     fun insert(values: ContentValues): Long {
         return db.insert(NOME_TABELA, null, values)
