@@ -17,6 +17,7 @@ class BDCasosOpenHelper(context: Context?) : SQLiteOpenHelper(context, NOME_BASE
             TabelaTotais(db).cria()
             TabelaAtivos(db).cria()
             TabelaRecuperados(db).cria()
+            TabelaPessoas(db).cria()
         }
     }
 
