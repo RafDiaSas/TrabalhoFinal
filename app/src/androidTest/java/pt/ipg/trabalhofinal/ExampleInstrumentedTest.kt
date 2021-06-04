@@ -170,4 +170,18 @@ class TesteBaseDados {
 
         db.close()
     }
+
+    @Test
+    fun consegueLerPessoas(){
+        val db = getBDCasosOpenHelper().writableDatabase
+        val tabelaPessoas = getTabelaPessoas(db)
+        val pessoas = Pessoas(nome="Daniel", numeroCC = "87690271", telefone = "+355 939128700", estado = 1, dataD = 25102020, dataR = 31122020)
+        pessoas.id = inserePessoas(tabelaPessoas, pessoas)
+
+        val pessoasBD = getPessoasBD(tabelaPessoas, pessoas.id)
+        assertEquals(pessoas, pessoasBD)
+
+
+        db.close()
+    }
 }
