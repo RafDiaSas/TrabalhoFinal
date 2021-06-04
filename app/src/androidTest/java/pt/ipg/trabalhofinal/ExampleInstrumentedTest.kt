@@ -411,4 +411,19 @@ class TesteBaseDados {
 
         db.close()
     }
+
+    @Test
+    fun consegueLerTotais(){
+        val db = getBDCasosOpenHelper().writableDatabase
+        val tabelaTotais = getTabelaTotais(db)
+        val totais = Totais(totais = 6, ativos = 4, recuperados = 2)
+
+        totais.id = insereTotais(tabelaTotais, totais)
+
+        val totaisBD = getTotaisBD(tabelaTotais, totais.id)
+        assertEquals(totais, totaisBD)
+
+
+        db.close()
+    }
 }
