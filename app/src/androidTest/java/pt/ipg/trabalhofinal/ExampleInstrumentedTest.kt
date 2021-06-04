@@ -16,7 +16,7 @@ class TesteBaseDados {
     private fun getAppContext() = InstrumentationRegistry.getInstrumentation().targetContext
     private fun getBDCasosOpenHelper() = BDCasosOpenHelper(getAppContext())
     private fun getTabelaPessoas(db: SQLiteDatabase) = TabelaPessoas(db)
-    private fun getTabelAtivos(db: SQLiteDatabase) = TabelaAtivos(db)
+    private fun getTabelaAtivos(db: SQLiteDatabase) = TabelaAtivos(db)
     private fun getTabelaRecuperados(db: SQLiteDatabase) = TabelaRecuperados(db)
     private fun getTabelaTotais(db: SQLiteDatabase) = TabelaTotais(db)
     private fun inserePessoas(tabelaPessoas: TabelaPessoas, pessoas: Pessoas): Long {
@@ -182,6 +182,22 @@ class TesteBaseDados {
         assertEquals(pessoas, pessoasBD)
 
 
+        db.close()
+    }
+
+    @Test
+    fun consegueInserirAtivos(){
+        val db = getBDCasosOpenHelper().writableDatabase
+        val tabelaPessoas = getTabelaPessoas(db)
+        val pessoas = Pessoas(nome="Daniel", numeroCC = "87690271", telefone = "+355 939128700", estado = 1, dataD = 25102020, dataR = 31122020)
+        pessoas.id = inserePessoas(tabelaPessoas, pessoas)
+
+        val tabelaAtivos = getTabelaAtivos(db)
+        val ativos = Ativos(idPessoas = pessoas.id)
+        ativos.id = insereAtivos(tabelaAtivos, ativos)
+
+        val ativosBD = getAtivosBD(tabelaAtivos, ativos.id)
+        assertEquals(ativos, ativosBD)
         db.close()
     }
 }
