@@ -126,5 +126,29 @@ class TesteBaseDados {
         db.close()
     }
 
+    @Test
+    fun consegueAlterarPessoas(){
+        val db = getBDCasosOpenHelper().writableDatabase
 
+        val tabelaPessoas = getTabelaPessoas(db)
+
+        val pessoas = Pessoas(nome="Daniel", numeroCC = "87690271", telefone = "+355 939128700", estado = 1, dataD = 25102020, dataR = 31122020)
+
+        pessoas.id = inserePessoas(tabelaPessoas, pessoas)
+        pessoas.nome="Daniel"
+        pessoas.numeroCC="00000000"
+        pessoas.telefone="977456449"
+        pessoas.estado=2
+        pessoas.dataD=11012021
+        pessoas.dataR=12012021
+        val registosAlterados = tabelaPessoas.update(
+            pessoas.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf(pessoas.id.toString())
+        )
+
+        assertEquals(1, registosAlterados)
+
+        db.close()
+    }
 }
