@@ -361,6 +361,7 @@ class TesteBaseDados {
         db.close()
     }
 
+    @Test
     fun consegueInserirTotais(){
         val db = getBDCasosOpenHelper().writableDatabase
         val tabelaTotais = getTabelaTotais(db)
@@ -372,6 +373,7 @@ class TesteBaseDados {
         db.close()
     }
 
+    @Test
     fun consegueAlterarTotais(){
         val db = getBDCasosOpenHelper().writableDatabase
         val tabelaTotais = getTabelaTotais(db)
@@ -388,6 +390,24 @@ class TesteBaseDados {
         )
 
         assertEquals(1, registosAlterados)
+
+        db.close()
+    }
+
+    @Test
+    fun consegueApagarTotais(){
+        val db = getBDCasosOpenHelper().writableDatabase
+        val tabelaTotais = getTabelaTotais(db)
+        val totais = Totais(totais = 6, ativos = 4, recuperados = 2)
+
+        totais.id = insereTotais(tabelaTotais, totais)
+
+        val registosEliminados =tabelaTotais.delete(
+            "${BaseColumns._ID}=?",
+            arrayOf(totais.id.toString())
+        )
+
+        assertEquals(1, registosEliminados)
 
         db.close()
     }
