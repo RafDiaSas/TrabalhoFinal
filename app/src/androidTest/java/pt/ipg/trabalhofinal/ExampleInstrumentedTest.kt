@@ -288,4 +288,35 @@ class TesteBaseDados {
         assertEquals(recuperados, recuperadosBD)
         db.close()
     }
+
+    @Test
+    fun consegueAlterarRecuperados(){
+        val db = getBDCasosOpenHelper().writableDatabase
+
+        val tabelaPessoas = getTabelaPessoas(db)
+
+        val pessoas = Pessoas(nome="Daniel", numeroCC = "87690271", telefone = "+355 939128700", estado = 2, dataD = 25102020, dataR = 31122020)
+
+        pessoas.id = inserePessoas(tabelaPessoas, pessoas)
+
+        val tabelaRecuperados = getTabelaRecuperados(db)
+        val recuperados = Recuperados(idPessoas = pessoas.id)
+        recuperados.id = insereRecuperados(tabelaRecuperados, recuperados)
+
+        val pessoas2 = Pessoas(nome="Daniela", numeroCC = "87690272", telefone = "+355 939128701", estado = 2, dataD = 25102020, dataR = 301122020)
+
+        pessoas2.id = inserePessoas(tabelaPessoas, pessoas2)
+
+        recuperados.idPessoas = pessoas2.id
+        recuperados.id = insereRecuperados(tabelaRecuperados, recuperados)
+        val registosAlterados = tabelaRecuperados.update(
+            recuperados.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf(recuperados.id.toString())
+        )
+
+        assertEquals(1, registosAlterados)
+
+        db.close()
+    }
 }
