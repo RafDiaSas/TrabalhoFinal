@@ -151,4 +151,23 @@ class TesteBaseDados {
 
         db.close()
     }
+
+    @Test
+    fun consegueApagarPessoas(){
+        val db = getBDCasosOpenHelper().writableDatabase
+        val tabelaPessoas = getTabelaPessoas(db)
+        val pessoas = Pessoas(nome="Daniel", numeroCC = "87690271", telefone = "+355 939128700", estado = 1, dataD = 25102020, dataR = 31122020)
+
+
+        pessoas.id = inserePessoas(tabelaPessoas, pessoas)
+
+        val registosEliminados =tabelaPessoas.delete(
+            "${BaseColumns._ID}=?",
+            arrayOf(pessoas.id.toString())
+        )
+
+        assertEquals(1, registosEliminados)
+
+        db.close()
+    }
 }
