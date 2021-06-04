@@ -371,4 +371,24 @@ class TesteBaseDados {
         assertEquals(totais, totaisBD)
         db.close()
     }
+
+    fun consegueAlterarTotais(){
+        val db = getBDCasosOpenHelper().writableDatabase
+        val tabelaTotais = getTabelaTotais(db)
+        val totais = Totais(totais = 6, ativos = 4, recuperados = 2)
+
+        totais.id = insereTotais(tabelaTotais, totais)
+        totais.totais=10
+        totais.ativos=7
+        totais.recuperados=3
+        val registosAlterados = tabelaTotais.update(
+            totais.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf(totais.id.toString())
+        )
+
+        assertEquals(1, registosAlterados)
+
+        db.close()
+    }
 }
