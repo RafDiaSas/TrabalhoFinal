@@ -272,4 +272,20 @@ class TesteBaseDados {
 
         db.close()
     }
+
+    @Test
+    fun consegueInserirRecuperados(){
+        val db = getBDCasosOpenHelper().writableDatabase
+        val tabelaPessoas = getTabelaPessoas(db)
+        val pessoas = Pessoas(nome="Daniel", numeroCC = "87690271", telefone = "+355 939128700", estado = 2, dataD = 25102020, dataR = 31122020)
+        pessoas.id = inserePessoas(tabelaPessoas, pessoas)
+
+        val tabelaRecuperados = getTabelaRecuperados(db)
+        val recuperados = Recuperados(idPessoas = pessoas.id)
+        recuperados.id = insereRecuperados(tabelaRecuperados, recuperados)
+
+        val recuperadosBD = getRecuperadosBD(tabelaRecuperados, recuperados.id)
+        assertEquals(recuperados, recuperadosBD)
+        db.close()
+    }
 }
