@@ -25,8 +25,9 @@ class TabelaTotais (db: SQLiteDatabase) : BaseColumns {
         columns: Array<String>,
         selection: String,
         selectionArgs: Array<String>,
-        groupBy: String, having: String,
-        orderBy: String
+        groupBy: String?,
+        having: String?,
+        orderBy: String?
     ): Cursor? {
         return db.query(NOME_TABELA, columns, selection, selectionArgs, groupBy, having, orderBy)
     }
@@ -36,6 +37,8 @@ class TabelaTotais (db: SQLiteDatabase) : BaseColumns {
         const val CAMPO_TOTAIS = "NTotais"
         const val CAMPO_ATIVOS = "NAtivos"
         const val CAMPO_RECUPERADOS = "NRecuperados"
-    }
 
+        val TODOS_CAMPOS =arrayOf(BaseColumns._ID, CAMPO_TOTAIS, CAMPO_ATIVOS, CAMPO_RECUPERADOS)
+
+    }
 }

@@ -25,8 +25,9 @@ class TabelaPessoas (db: SQLiteDatabase) : BaseColumns {
         columns: Array<String>,
         selection: String,
         selectionArgs: Array<String>,
-        groupBy: String, having: String,
-        orderBy: String
+        groupBy: String?,
+        having: String?,
+        orderBy: String?
     ): Cursor? {
         return db.query(NOME_TABELA, columns, selection, selectionArgs, groupBy, having, orderBy)
     }
@@ -39,6 +40,9 @@ class TabelaPessoas (db: SQLiteDatabase) : BaseColumns {
         const val CAMPO_ESTADO = "Estado"
         const val CAMPO_DATADIAGNOSTICO = "Data_Teste_Positivo"
         const val CAMPO_DATARECUPERACAO = "Data_Recuperacao"
+
+        val TODOS_CAMPOS =arrayOf(BaseColumns._ID, CAMPO_NOME, CAMPO_NUMEROCC, CAMPO_TELEFONE, CAMPO_ESTADO, CAMPO_DATADIAGNOSTICO, CAMPO_DATARECUPERACAO)
+
     }
 
 }

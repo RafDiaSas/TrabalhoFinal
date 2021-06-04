@@ -25,8 +25,9 @@ class TabelaRecuperados (db: SQLiteDatabase) : BaseColumns {
         columns: Array<String>,
         selection: String,
         selectionArgs: Array<String>,
-        groupBy: String, having: String,
-        orderBy: String
+        groupBy: String?,
+        having: String?,
+        orderBy: String?
     ): Cursor? {
         return db.query(NOME_TABELA, columns, selection, selectionArgs, groupBy, having, orderBy)
     }
@@ -34,6 +35,8 @@ class TabelaRecuperados (db: SQLiteDatabase) : BaseColumns {
     companion object{
         const val NOME_TABELA = "CasosRecuperados"
         const val CAMPO_ID_PESSOAS = "ID_pessoas"
+
+        val TODOS_CAMPOS =arrayOf(BaseColumns._ID, TabelaAtivos.CAMPO_ID_PESSOAS)
     }
 
 }
