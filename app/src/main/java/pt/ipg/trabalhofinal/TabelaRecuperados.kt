@@ -23,7 +23,7 @@ class TabelaRecuperados (db: SQLiteDatabase) : BaseColumns {
 
     fun query(
         columns: Array<String>,
-        selection: String,
+        selection: String?,
         selectionArgs: Array<String>,
         groupBy: String?,
         having: String?,
