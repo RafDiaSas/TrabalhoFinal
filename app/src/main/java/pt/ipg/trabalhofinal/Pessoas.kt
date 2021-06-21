@@ -4,7 +4,7 @@ import android.content.ContentValues
 import android.database.Cursor
 import android.provider.BaseColumns
 
-data class Pessoas(var id: Long = -1, var nome: String, var numeroCC: String, var telefone: String, var infetado: Int, var dataDiagnostico: Int, var dataRecuperacao: Int) {
+data class Pessoas(var id: Long = -1, var nome: String, var numeroCC: String, var telefone: String, var infetado: Int, var dataDiagnostico: Int, var dataRecuperacao: Int, var idHospital: Int) {
     fun toContentValues(): ContentValues {
         val valores = ContentValues().apply{
             put(TabelaPessoas.CAMPO_NOME, nome)
@@ -13,6 +13,7 @@ data class Pessoas(var id: Long = -1, var nome: String, var numeroCC: String, va
             put(TabelaPessoas.CAMPO_INFETADO, infetado)
             put(TabelaPessoas.CAMPO_DATADIAGNOSTICO, dataDiagnostico)
             put(TabelaPessoas.CAMPO_DATARECUPERACAO, dataRecuperacao)
+            put(TabelaPessoas.CAMPO_ID_HOSPITAL, idHospital)
         }
         return valores
     }
@@ -26,6 +27,7 @@ data class Pessoas(var id: Long = -1, var nome: String, var numeroCC: String, va
             val colInfetado = cursor.getColumnIndex(TabelaPessoas.CAMPO_INFETADO)
             val colDataDiagnostico = cursor.getColumnIndex(TabelaPessoas.CAMPO_DATADIAGNOSTICO)
             val colDataRecuperacao = cursor.getColumnIndex(TabelaPessoas.CAMPO_DATARECUPERACAO)
+            val colIDHospital = cursor.getColumnIndex(TabelaPessoas.CAMPO_ID_HOSPITAL)
 
             val id = cursor.getLong(colId)
             val nome = cursor.getString(colNome)
@@ -34,8 +36,9 @@ data class Pessoas(var id: Long = -1, var nome: String, var numeroCC: String, va
             val infetado = cursor.getInt(colInfetado)
             val dataDiagnostico = cursor.getInt(colDataDiagnostico)
             val dataRecuperacao = cursor.getInt(colDataRecuperacao)
+            val idHospital = cursor.getInt(colIDHospital)
 
-            return Pessoas(id, nome, numeroCC, telefone, infetado, dataDiagnostico, dataRecuperacao)
+            return Pessoas(id, nome, numeroCC, telefone, infetado, dataDiagnostico, dataRecuperacao, idHospital)
         }
     }
 }
