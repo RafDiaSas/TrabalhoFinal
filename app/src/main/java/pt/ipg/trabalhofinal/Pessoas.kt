@@ -4,7 +4,7 @@ import android.content.ContentValues
 import android.database.Cursor
 import android.provider.BaseColumns
 
-data class Pessoas(var id: Long = -1, var nome: String, var numeroCC: String, var telefone: String, var infetado: Boolean, var dataDiagnostico: Int, var dataRecuperacao: Int) {
+data class Pessoas(var id: Long = -1, var nome: String, var numeroCC: String, var telefone: String, var infetado: Int, var dataDiagnostico: Int, var dataRecuperacao: Int) {
     fun toContentValues(): ContentValues {
         val valores = ContentValues().apply{
             put(TabelaPessoas.CAMPO_NOME, nome)
