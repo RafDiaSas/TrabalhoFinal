@@ -14,10 +14,9 @@ class BDCasosOpenHelper(context: Context?) : SQLiteOpenHelper(context, NOME_BASE
      */
     override fun onCreate(db: SQLiteDatabase?) {
         if (db != null) {
-            TabelaTotais(db).cria()
-            TabelaAtivos(db).cria()
-            TabelaRecuperados(db).cria()
             TabelaPessoas(db).cria()
+            TabelaHospital(db).cria()
+            TabelaObitos(db).cria()
         }
     }
 
