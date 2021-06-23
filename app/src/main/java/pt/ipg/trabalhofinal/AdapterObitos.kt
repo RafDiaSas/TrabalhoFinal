@@ -19,7 +19,7 @@ class AdapterObitos(val fragment: ListaObitosFragment) : RecyclerView.Adapter<Ad
        // private val textViewNome = itemView.findViewById<TextView>(R.id.textViewNomeObito)
         private val textViewIDPessoa = itemView.findViewById<TextView>(R.id.textViewIDPssoa)
 
-        private lateinit var obito: Obito
+        private lateinit var obito: Obitos
 
         init{
             itemView.setOnClickListener(this)
@@ -43,7 +43,7 @@ class AdapterObitos(val fragment: ListaObitosFragment) : RecyclerView.Adapter<Ad
         fun seleciona() {
             selecionado = this
             itemView.setBackgroundResource(R.color.cor_selecao)
-            DadosApp.obitoSelecionado = hospital
+            DadosApp.obitoSelecionado = obito
             DadosApp.activity.atualizaMenuListaObitos(true)
 
         }
