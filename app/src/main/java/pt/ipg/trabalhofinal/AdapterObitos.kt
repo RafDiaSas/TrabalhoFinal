@@ -7,7 +7,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterHospital(val fragment: ListaHospitalFragment) : RecyclerView.Adapter<AdapterHospital.ViewHolderHospital>() {
+class AdapterObitos(val fragment: ListaObitosFragment) : RecyclerView.Adapter<AdapterObitos.ViewHolderObitos>() {
     var cursor: Cursor? = null
         get()= field
         set(value) {
@@ -15,22 +15,23 @@ class AdapterHospital(val fragment: ListaHospitalFragment) : RecyclerView.Adapte
             notifyDataSetChanged()
         }
 
-    class ViewHolderHospital(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
-        private val textViewNome = itemView.findViewById<TextView>(R.id.textViewNomeHospital)
-        private val textViewRegiao = itemView.findViewById<TextView>(R.id.textViewRegiao)
+    class ViewHolderObitos(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+       // private val textViewNome = itemView.findViewById<TextView>(R.id.textViewNomeObito)
+        private val textViewIDPessoa = itemView.findViewById<TextView>(R.id.textViewIDPssoa)
 
-        private lateinit var hospital: Hospital
+        private lateinit var obito: Obito
 
         init{
             itemView.setOnClickListener(this)
         }
 
-        fun atualizaHospital(hospital: Hospital) {
+        fun atualizaObito(obito: Obitos) {
 
-            this.hospital = hospital
+            this.obito = obito
 
-            textViewNome.text = hospital.nome
-            textViewRegiao.text = hospital.regiao
+            //textViewNome.text = obito.nome
+            textViewIDPessoa.text = obito.idPessoa.toString()
+
 
         }
 
@@ -42,8 +43,8 @@ class AdapterHospital(val fragment: ListaHospitalFragment) : RecyclerView.Adapte
         fun seleciona() {
             selecionado = this
             itemView.setBackgroundResource(R.color.cor_selecao)
-            DadosApp.hospitalSelecionado = hospital
-            DadosApp.activity.atualizaMenuListaHospital(true)
+            DadosApp.obitoSelecionado = hospital
+            DadosApp.activity.atualizaMenuListaObitos(true)
 
         }
 
@@ -53,12 +54,12 @@ class AdapterHospital(val fragment: ListaHospitalFragment) : RecyclerView.Adapte
         }
 
         companion object{
-            var selecionado: ViewHolderHospital? = null
+            var selecionado: ViewHolderObitos? = null
         }
     }
 
     companion object {
-        var selecionado : ViewHolderHospital? = null
+        var selecionado : ViewHolderObitos? = null
     }
 
 
@@ -86,10 +87,10 @@ class AdapterHospital(val fragment: ListaHospitalFragment) : RecyclerView.Adapte
      * @see .getItemViewType
      * @see .onBindViewHolder
      */
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderHospital {
-        val itemHospital =fragment.layoutInflater.inflate(R.layout.item_hospital, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderObitos {
+        val itemObitos =fragment.layoutInflater.inflate(R.layout.item_obitos, parent, false)
 
-        return ViewHolderHospital(itemHospital)
+        return ViewHolderObitos(itemObitos)
     }
 
     /**
@@ -113,9 +114,9 @@ class AdapterHospital(val fragment: ListaHospitalFragment) : RecyclerView.Adapte
      * item at the given position in the data set.
      * @param position The position of the item within the adapter's data set.
      */
-    override fun onBindViewHolder(holder: ViewHolderHospital, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolderObitos, position: Int) {
         cursor!!.moveToPosition(position)
-        holder.atualizaHospital( Hospital.fromCursor(cursor!!))
+        holder.atualizaObito( Obitos.fromCursor(cursor!!))
     }
 
     /**

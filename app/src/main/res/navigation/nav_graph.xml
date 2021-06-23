@@ -19,7 +19,7 @@
         android:id="@+id/SecondFragment"
         android:name="pt.ipg.trabalhofinal.ListaHospitalFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        tools:layout="@layout/fragment_lista_hospital">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"

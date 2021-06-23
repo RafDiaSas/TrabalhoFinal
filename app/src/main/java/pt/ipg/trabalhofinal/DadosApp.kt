@@ -7,5 +7,7 @@ class DadosApp {
         var pessoaSelecionada: Pessoas? = null
         lateinit var fragmentListaHospital: ListaHospitalFragment
         var hospitalSelecionado: Hospital? = null
+        lateinit var fragmentListaObitos: ListaObitosFragment
+        var obitoSelecionado: Obitos? = null
     }
 }

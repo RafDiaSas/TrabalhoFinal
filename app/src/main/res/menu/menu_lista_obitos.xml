@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="pt.ipg.trabalhofinal.MainActivity">
+    <item
+        android:id="@+id/action_novo_obito"
+        android:orderInCategory="100"
+        android:title="Nova Obito" />
+    <item
+        android:id="@+id/action_alterar_obito"
+        android:orderInCategory="101"
+        android:title="Alterar Obito" />
+    <item
+        android:id="@+id/action_eliminar_obito"
+        android:orderInCategory="102"
+        android:title="Eliminar Obito" />
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="103"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+</menu>
