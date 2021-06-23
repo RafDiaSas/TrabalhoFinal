@@ -16,7 +16,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Miguel" />
+        tools:text="Garcia da Orta" />
 
     <TextView
         android:id="@+id/textViewRegiao"
@@ -27,17 +27,6 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         app:layout_constraintStart_toStartOf="@+id/textViewNomeHospital"
         app:layout_constraintTop_toBottomOf="@+id/textViewNomeHospital"
-        tools:text="Infetado" />
-
-    <TextView
-        android:id="@+id/textViewTelefone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="108dp"
-        android:layout_marginLeft="108dp"
-        android:layout_marginTop="44dp"
-        android:text="274889955"
-        app:layout_constraintStart_toEndOf="@+id/textViewRegiao"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:text="Grande Lisboa" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

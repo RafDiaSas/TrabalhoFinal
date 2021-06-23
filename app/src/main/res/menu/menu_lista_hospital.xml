@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="pt.ipg.trabalhofinal.MainActivity">
+    <item
+        android:id="@+id/action_novo_hospital"
+        android:orderInCategory="100"
+        android:title="Nova Hospital" />
+    <item
+        android:id="@+id/action_alterar_hospital"
+        android:orderInCategory="101"
+        android:title="Alterar Hospital" />
+    <item
+        android:id="@+id/action_eliminar_hospital"
+        android:orderInCategory="102"
+        android:title="Eliminar Hospital" />
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="103"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+</menu>

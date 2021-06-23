@@ -4,9 +4,10 @@ import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterPessoas(val fragment: ListaPessoasFragment) : RecyclerView.Adapter<AdapterPessoas.ViewHolderPessoa>() {
+class AdapterHospital(val fragment: ListaHospitalFragment) : RecyclerView.Adapter<AdapterHospital.ViewHolderHospital>() {
     var cursor: Cursor? = null
         get()= field
         set(value) {
@@ -14,24 +15,23 @@ class AdapterPessoas(val fragment: ListaPessoasFragment) : RecyclerView.Adapter<
             notifyDataSetChanged()
         }
 
-    class ViewHolderPessoa(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    class ViewHolderHospital(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         private val textViewNome = itemView.findViewById<TextView>(R.id.textViewNomeHospital)
-        private val textViewInfetado = itemView.findViewById<TextView>(R.id.textViewRegiao)
-        private val textViewTelefone = itemView.findViewById<TextView>(R.id.textViewTelefone)
+        private val textViewRegiao = itemView.findViewById<TextView>(R.id.textViewRegiao)
 
-        private lateinit var pessoa: Pessoas
+        private lateinit var hospital: Hospital
 
         init{
             itemView.setOnClickListener(this)
         }
 
-        fun atualizaPessoa(pessoa: Pessoas) {
+        fun atualizaHospital(pessoa: Pessoas) {
 
-            this.pessoa = pessoa
+            this.hospital = hospital
 
-            textViewNome.text = pessoa.nome
-            textViewInfetado.text = pessoa.infetado.toString()
-            textViewTelefone.text = pessoa.telefone
+            textViewNome.text = hospital.nome
+            textViewRegiao.text = hospital.regiao
+
         }
 
         override fun onClick(v: View?) {
@@ -42,8 +42,8 @@ class AdapterPessoas(val fragment: ListaPessoasFragment) : RecyclerView.Adapter<
         fun seleciona() {
             selecionado = this
             itemView.setBackgroundResource(R.color.cor_selecao)
-            DadosApp.pessoaSelecionada = pessoa
-            DadosApp.activity.atualizaMenuListaPessoas(true)
+            DadosApp.hospitalSelecionado = hospital
+            DadosApp.activity.atualizaMenuListaHospital(true)
 
         }
 
@@ -53,12 +53,12 @@ class AdapterPessoas(val fragment: ListaPessoasFragment) : RecyclerView.Adapter<
         }
 
         companion object{
-            var selecionado: ViewHolderPessoa? = null
+            var selecionado: ViewHolderHospital? = null
         }
     }
 
     companion object {
-        var selecionado : ViewHolderPessoa? = null
+        var selecionado : ViewHolderHospital? = null
     }
 
 
@@ -86,10 +86,10 @@ class AdapterPessoas(val fragment: ListaPessoasFragment) : RecyclerView.Adapter<
      * @see .getItemViewType
      * @see .onBindViewHolder
      */
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderPessoa {
-        val itemPessoa =fragment.layoutInflater.inflate(R.layout.item_pessoas, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderHospital {
+        val itemHospital =fragment.layoutInflater.inflate(R.layout.item_hospital, parent, false)
 
-        return ViewHolderPessoa(itemPessoa)
+        return ViewHolderHospital(itemHospital)
     }
 
     /**
@@ -113,9 +113,9 @@ class AdapterPessoas(val fragment: ListaPessoasFragment) : RecyclerView.Adapter<
      * item at the given position in the data set.
      * @param position The position of the item within the adapter's data set.
      */
-    override fun onBindViewHolder(holder: ViewHolderPessoa, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolderHospital, position: Int) {
         cursor!!.moveToPosition(position)
-        holder.atualizaPessoa( Pessoas.fromCursor(cursor!!))
+        holder.atualizaHospital( Pessoas.fromCursor(cursor!!))
     }
 
     /**

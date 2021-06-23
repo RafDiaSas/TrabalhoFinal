@@ -5,5 +5,7 @@ class DadosApp {
         lateinit var activity: MainActivity
         lateinit var fragmentListaPessoas: ListaPessoasFragment
         var pessoaSelecionada: Pessoas? = null
+        lateinit var fragmentListaHospital: ListaHospitalFragment
+        var hospitalSelecionado: Hospital? = null
     }
 }
